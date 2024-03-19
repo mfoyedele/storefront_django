@@ -7,4 +7,4 @@ def say_hello(request):
     # Keyword=value
     queryset = Product.objects.filter(unit_price__range=(20, 30))       
     
-    return render(request, 'hello.html', {'name': 'Mosh', 'product': list(queryset)})
+    return render(request, 'hello.html', {'name': 'Mosh', 'products': list(queryset)})
