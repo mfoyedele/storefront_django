@@ -5,6 +5,6 @@ from store.models import Product
 
 def say_hello(request):
     # Keyword=value
-    queryset = Product.objects.filter(unit_price__range=(20, 30))       
+    queryset = Product.objects.filter(inventory__lt='10')       
     
     return render(request, 'hello.html', {'name': 'Mosh', 'products': list(queryset)})
