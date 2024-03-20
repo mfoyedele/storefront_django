@@ -5,7 +5,7 @@ from store.models import Product
 
 
 def say_hello(request):
-    # Proudcts: inventory < 10 OR price < 20
-    queryset = Product.objects.filter(Q(inventory__lt='10') & ~Q(unit_price__lt=20))       
+    # Proudcts: 0, 1, 2, 3, 4
+    queryset = Product.objects.all()[5:10]       
     
     return render(request, 'hello.html', {'name': 'Mosh', 'products': list(queryset)})
