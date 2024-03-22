@@ -6,6 +6,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'unit_price', 'inventory_status', 'collection_title']
     list_editable = ['unit_price']
     list_per_page = 10
+    list_select_related = ['collection']
     
     def collection_title(self, product):
         return product.collection.title  
