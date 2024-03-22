@@ -17,6 +17,11 @@ class ProductAdmin(admin.ModelAdmin):
             return 'Low'
         return 'OK'
 
+@admin.register(models.Collection)
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'product_count']
+
+
 @admin.register(models.Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'membership']
@@ -30,4 +35,3 @@ class OrderAdmin(admin.ModelAdmin):
     list_per_page = 10
     
     
-admin.site.register(models.Collection)
