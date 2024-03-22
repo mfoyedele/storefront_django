@@ -21,6 +21,8 @@ class ProductAdmin(admin.ModelAdmin):
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ['title', 'product_count']
 
+    def products_count(self, collection):
+        return collection.products_count
 
 @admin.register(models.Customer)
 class CustomerAdmin(admin.ModelAdmin):
