@@ -7,6 +7,13 @@ from django.utils.html import format_html, urlencode
 from django.urls import reverse
 from . import models
 
+
+class InventoryFilter(admin.SimpleListFilter):
+    title = 'inventory'
+    parameter_name = 'inventory'
+    
+    def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
+        return super().lookups(request, model_admin)
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'unit_price', 'inventory_status', 'collection_title']
