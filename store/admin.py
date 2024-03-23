@@ -25,6 +25,7 @@ class InventoryFilter(admin.SimpleListFilter):
             return queryset.filter(inventory__lt=10)        
 
 class TagInLine(GenericTabularInline):
+    autocomplete_fields = ['tag']
     model = TaggedItem
 
 @admin.register(models.Product)
