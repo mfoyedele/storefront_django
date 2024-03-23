@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.db.models.aggregates import Count
 from django.db.models.query import QuerySet
 from django.http import HttpRequest
+from django.utils.html import format_html
 from . import models
 
 @admin.register(models.Product)
@@ -27,7 +28,7 @@ class CollectionAdmin(admin.ModelAdmin):
 
     @admin.display(ordering='products_count')
     def products_count(self, collection):
-        return collection.products_count
+        return format_html('<a href="http://google.com">{}</a>', collection.products_count)        
     
     def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
         return super().get_queryset(request).annotate(
