@@ -57,6 +57,11 @@ class CustomerAdmin(admin.ModelAdmin):
                 'customer__id': str(customer.id)
             }))
         return format_html('<a href="{}">{} Orders</a>', url, customer.orders_count)
+    
+    def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
+        return super().get_queryset(request).annotate(
+            orders_count=Count('order')
+        )
 
 @admin.register(models.Order)
 class OrderAdmin(admin.ModelAdmin):
