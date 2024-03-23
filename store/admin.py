@@ -24,10 +24,6 @@ class InventoryFilter(admin.SimpleListFilter):
         if self.value() == '<10':
             return queryset.filter(inventory__lt=10)        
 
-class TagInLine(GenericTabularInline):
-    autocomplete_fields = ['tag']
-    model = TaggedItem
-
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     autocomplete_fields = ['collection']
