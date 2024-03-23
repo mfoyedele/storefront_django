@@ -6,13 +6,13 @@ from tags.models import TaggedItem
 
 
 # Register your models here.
-class TagInLine(GenericTabularInline):
+class TagInline(GenericTabularInline):
     autocomplete_fields = ['tag']
     model = TaggedItem
 
 
 class CustomProductAdmin(ProductAdmin):
-    inlines = ['TagInline']
+    inlines = [TagInline]
 
 admin.site.unregister(Product)
 admin.site.register(Product, CustomProductAdmin)
