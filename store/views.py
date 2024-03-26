@@ -7,3 +7,7 @@ from rest_framework.response import Response
 @api_view()
 def product_list(request):
     return Response('ok')
+
+@api_view()
+def product_detail(request):
+    return Response('ok')
