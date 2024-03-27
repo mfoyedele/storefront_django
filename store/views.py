@@ -21,13 +21,16 @@ class ProductList(APIView):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
+class ProductDetail(APIView):
+    def get(self, request):
+        product = get_object_or_404(Product, pk=id)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)  
+
         
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, id):
-    product = get_object_or_404(Product, pk=id)
-    if request.method == 'GET':
-        serializer = ProductSerializer(product)
-        return Response(serializer.data)
+    
     elif request.method == 'PUT':
         serializer = ProductSerializer(product, data=request.data)
         serializer.is_valid(raise_exception=True)
