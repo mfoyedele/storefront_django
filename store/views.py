@@ -15,7 +15,11 @@ class ProductList(APIView):
         serializer = ProductSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
     
-
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
  
 @api_view(['GET', 'POST', 'DELETE'])
@@ -23,10 +27,7 @@ def product_list(request):
     if request.method == 'GET':
         
     elif request.method == 'POST':
-        serializer = ProductSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
         
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, id):
