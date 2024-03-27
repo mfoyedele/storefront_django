@@ -17,7 +17,7 @@ def product_list(request):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response('ok')
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
         
 @api_view(['GET', 'PUT'])
 def product_detail(request, id):
@@ -29,7 +29,7 @@ def product_detail(request, id):
         serializer = ProductSerializer(product, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response()
+        return Response(serializer.data)
 
 @api_view
 def collection_detail(request, pk):
