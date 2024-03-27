@@ -18,4 +18,8 @@ def product_detail(request, id):
     product = get_object_or_404(Product, pk=id)
     serializer = ProductSerializer(product)
     return Response(serializer.data)
+
+@api_view
+def collection_detail(request, id):
+    return Response('ok')
     
