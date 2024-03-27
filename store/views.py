@@ -26,6 +26,13 @@ class ProductDetail(APIView):
         product = get_object_or_404(Product, pk=id)
         serializer = ProductSerializer(product)
         return Response(serializer.data)  
+    
+    def put(self, request):
+        product = get_object_or_404(Product, pk=id)
+        serializer = ProductSerializer(product, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
 
         
 @api_view(['GET', 'PUT', 'DELETE'])
