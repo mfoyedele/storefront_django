@@ -7,7 +7,7 @@ from .models import Product
 from .serializers import ProductSerializer
 
 # Create your views here. 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 def product_list(request):
     if request.method == 'GET':
         queryset = Product.objects.select_related('collection').all()
@@ -30,6 +30,9 @@ def product_detail(request, id):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+    elif request.method == 'DELETE':
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view
 def collection_detail(request, pk):
