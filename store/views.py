@@ -40,7 +40,7 @@ class ProductDetail(APIView):
 
 
 class CollectionList(ListCreateAPIView):
-    querysetn = Collection.objects.annotate(
+    queryset = Collection.objects.annotate(
         products_count=Count('products')).all()
     serializer_class = CollectionSerializer
             
