@@ -26,11 +26,12 @@ class ProductViewSet(ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
   
 
-class CollectionList(ListCreateAPIView):
+class CollectionViewSet(ModelViewSet):
     queryset = Collection.objects.annotate(
         products_count=Count('products')).all()
     serializer_class = CollectionSerializer
             
+    
 class CollectionDetail(RetrieveUpdateDestroyAPIView):
     queryset = Collection.objects.annotate(
         products_count=Count('products'))
