@@ -21,7 +21,7 @@ class ProductList(ListCreateAPIView):
 class ProductDetail(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    lookup_field = id
+    lookup_field = 'id'
     
     def delete(self, request, id):
         product = get_object_or_404(Product, pk=id)
