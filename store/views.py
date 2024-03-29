@@ -35,7 +35,11 @@ class CollectionList(ListCreateAPIView):
         products_count=Count('products')).all()
     serializer_class = CollectionSerializer
             
-
+class CollectionDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Collection.objects.annotate(
+        products_count=Count('products'))
+    serializer_class = CollectionSerializer
+    
 @api_view(['GET', 'PUT', 'DELETE'])
 def collection_detail(request, pk):
     collection = get_object_or_404(
