@@ -11,7 +11,7 @@ from .models import Collection, Product
 from .serializers import CollectionSerializer, ProductSerializer
 
 
-class ProductList(ListCreateAPIView):
+class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     
