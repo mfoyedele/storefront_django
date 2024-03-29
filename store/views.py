@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.db.models.aggregates import Count
-from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.generics import ListCreateAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,7 +10,13 @@ from .models import Collection, Product
 from .serializers import CollectionSerializer, ProductSerializer
 
 
-class ProductList(APIView):
+class ProductList(ListCreateAPIView):
+    def get_queryset(self):
+        return Product.objects.select_related('collection').all()
+    
+    def get_serializer_class(self):
+        return ProductSerializer()
+    
     def get(self, request):
         queryset = Product.objects.select_related('collection').all()
         serializer = ProductSerializer(queryset, many=True, context={'request': request})
