@@ -7,9 +7,9 @@ router = routers.DefaultRouter()
 router.register('products', views.ProductViewSet)
 router.register('collections', views.CollectionViewSet)
 
-routers.NestedDefaultRouter(router, 'products', lookup='product')
+products_router = routers.NestedDefaultRouter(router, 'products', lookup='product')
 products_router.register('reviews', views.ReviewViewSet, basename='product-reviews')
 
 
 # URLConf
-urlpatterns = router.urls
+urlpatterns = router.urls + products_router.urls
