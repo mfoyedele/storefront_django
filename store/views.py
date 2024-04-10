@@ -12,8 +12,9 @@ from .serializers import CollectionSerializer, ProductSerializer, ReviewSerializ
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = ProductFilter
+    search_fileds = ['title', 'description']
         
     def get_serializer_context(self):
         return {'request': self.request}
