@@ -15,7 +15,6 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ProductFilter
-    pagination_class = PageNumberPagination
     search_fields = ['title', 'description']
     ordering_filters = ['unit_price', 'last_update']
         
