@@ -8,7 +8,7 @@ from rest_framework import status
 
 from .pagination import DefaultPagination
 from .filters import ProductFilter
-from .models import Cart, Collection, OrderItem, Product, Review
+from .models import Cart, CartItem, Collection, OrderItem, Product, Review
 from .serializers import CartSerializer, CollectionSerializer, ProductSerializer, ReviewSerializer
 
 
@@ -64,4 +64,4 @@ class CartViewSet(CreateModelMixin,
 class CartItemViewSet(ModelViewSet):
     
     def get_queryset(self):
-        return super().get_queryset()
+        return CartItem.objects.filter(cart_id=self.kwargs['cart_pk'])
