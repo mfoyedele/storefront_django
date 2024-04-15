@@ -62,3 +62,6 @@ class CartViewSet(CreateModelMixin,
     serializer_class = CartSerializer 
 
 class CartItemViewSet(ModelViewSet):
+    
+    def get_queryset(self):
+        return super().get_queryset()
