@@ -83,6 +83,9 @@ class AddCartItemSerializer(serializers.ModelSerializer):
             self.instance = cart_item        
         except CartItem.DoesNotExist:
             self.instance = CartItem.objects.create(cart_id=cart_id, **self.validated_data)
+    
+        return self.instance
+    
     class Meta:
         model = CartItem
         fields = ['id', 'product_id', 'quantity']
