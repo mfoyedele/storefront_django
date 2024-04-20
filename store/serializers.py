@@ -70,6 +70,10 @@ class CartSerializer(serializers.ModelSerializer):
 
 class AddCartItemSerializer(serializers.ModelSerializer):
     product_id = serializers.IntegerField()
+    
+    def save(self, **kwargs):
+        product_id = self.validated_data['product_id']
+        quantity = self.validated_data['quantity']
     class Meta:
         model = CartItem
         fields = ['id', 'product_id', 'quantity']
