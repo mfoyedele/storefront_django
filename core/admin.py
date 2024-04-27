@@ -5,7 +5,8 @@ from store.admin import ProductAdmin
 from store.models import Product
 from tags.models import TaggedItem
 
-class UserAdmin()
+class UserAdmin(BaseUserAdmin):
+    pass
 
 class TagInline(GenericTabularInline):
     autocomplete_fields = ['tag']
