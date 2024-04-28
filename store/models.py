@@ -58,10 +58,10 @@ class Customer(models.Model):
     
     
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
     
     class Meta:
-        ordering = ['first_name', 'last_name']
+        ordering = ['user__first_name', 'user__last_name']
         
 class Order(models.Model):
     PAYMENT_STATUS_PENDING = 'P'
