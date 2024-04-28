@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -59,6 +60,7 @@ class Customer(models.Model):
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
     
+    @admin.display
     def first_name(self):
         return self.user.first_name
     
